@@ -5,6 +5,8 @@
 #include <vector>
 #include <fstream>
 
+#include "bbb.h"
+
 using namespace std;
 
 string getStringInput() {
@@ -78,6 +80,12 @@ int newBeam()
 
     cout << "Is the beam uniform, i.e. same cross section along the beam's length?" << endl;
     getBoolInput();
+
+    Beam::Beam(beamName,bLen,uniform) {
+            beamName = name;
+            beamLength = length;
+            beamUniform = uniform;
+    }
 
     cout << "Beam created with parameters: Name = " << beamName << "; Length = " << to_string(bLen) << " m; Uniform = " << uniform; // find a way to convert uniform bool to a string...
 
