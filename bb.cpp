@@ -2,16 +2,117 @@
 
 #include <iostream>
 #include <string>
+#include <filesystem>
+
+using namespace
 
 using namespace std;
 
-int main() {
+string getStringInput() {
+
+    string inputString;
+
+    cin >> inputString;
+
+    return inputString;
+}
+
+vector getBeamDimensions(){ // This is not implemented yet
+    cout << "Good job, you overflowed this!";
+}
+
+double getDoubleInput()
+{
+    string inputString;
+    double number;
+    bool inputCorrect = false;    
+
+    while (inputCorrect == false)
+    {
+        cin >> inputString;
+        try
+        {
+            number = stod(bLenInput);
+            inputCorrect = true;
+        }
+        catch
+        {
+            cout << "Please enter a valid number" << endl;
+        }
+    }
+
+    return number;
+}
+
+bool getBoolInput() {
+    string userInput;    
+    while (true) {   
+        cout << "Y or N" << endl;     
+        userInput = getStringInput();
+        if(userInput == "Y" || userInput == "y"){
+            return true;
+        } else if (userInput == "F" || userInput == "f"){
+            //return false;
+            cout << "Not yet implemented...sorry" << endl;
+            return true;
+        }
+    }
+}
+
+int newBeam()
+{
+    //user decides to create a new beam.
+    string beamName;
+    bool uniform;
+    double bLen;
+    cout << endl << "Create a new beam" << endl;
+
+    cout << "Name you beam:" << endl;
+
+    beamName = getStringInput();
+    cout << endl;
+
+    cout << "Please enter a beam length in meters:" << endl;
+    bLen = getDoubleInput();
+    cout << endl;
+
+    cout << "Is the beam uniform, i.e. same cross section along the beam's length?" << endl;
+    getBoolInput();
+
+    cout << "Beam created with parameters: Name = " << beamName << "; Length = " << to_string(bLen) << " m; Uniform = " << uniform; // find a way to convert uniform bool to a string...
+
+    return 0;
+}
+
+int loadBeam() {
+    //when the user decides to load a beam.
+    string filePath;
+    //find out how to open the file explorer menu OR 
+    cout << "Type path to file OR \"--explore\" to find file via explorer, --exit to return" << endl;
+    cin >> filePath;
+    if(filePath == "--explore") {
+        //opens up a menu to find the file path the user wants.
+    } else if(filePath == "--exit") {
+        main(); // is this ok to do or recursively calling main a bad thing?
+    } else {
+        try {
+            //try and find and open the file the user typed in
+            file_exists() // this function might work? Need for research
+        } catch {            
+            cout << "you fucked that up didn't you, please try again";
+        }
+    }
+
+}
+
+int main()
+{
     string userOption;
-    //prints the string enclosed in double quotes
+    // prints the string enclosed in double quotes
     cout << "Welcome to BeamBend, enter and option below or type --help for help" << endl;
     cout << "" << endl;
-    cout << << "Your input: ";
+    cout < < < < "Your input: ";
     cin >> userOption;
-    cout << "You have selected option " << userOption  << endl;
+    cout << "You have selected option " << userOption << endl;
     return 0;
 }
