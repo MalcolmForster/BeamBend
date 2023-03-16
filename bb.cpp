@@ -2,9 +2,8 @@
 
 #include <iostream>
 #include <string>
-#include <filesystem>
-
-using namespace
+#include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -17,8 +16,9 @@ string getStringInput() {
     return inputString;
 }
 
-vector getBeamDimensions(){ // This is not implemented yet
+vector<int> getBeamDimensions(){ // This is not implemented yet
     cout << "Good job, you overflowed this!";
+    return vector<int>{10,20,30};
 }
 
 double getDoubleInput()
@@ -32,10 +32,10 @@ double getDoubleInput()
         cin >> inputString;
         try
         {
-            number = stod(bLenInput);
+            number = stod(inputString);
             inputCorrect = true;
         }
-        catch
+        catch(...)
         {
             cout << "Please enter a valid number" << endl;
         }
@@ -92,17 +92,28 @@ int loadBeam() {
     cin >> filePath;
     if(filePath == "--explore") {
         //opens up a menu to find the file path the user wants.
+
+        return 0;
     } else if(filePath == "--exit") {
-        main(); // is this ok to do or recursively calling main a bad thing?
+        return 0; // is this ok to do or recursively calling main a bad thing?
     } else {
         try {
             //try and find and open the file the user typed in
-            file_exists() // this function might work? Need for research
-        } catch {            
-            cout << "you fucked that up didn't you, please try again";
+            if(filePath.substr(filePath.size()-4,filePath.size()) != ".bbb") {
+                throw(0);
+            }
+            fstream fs;
+            fs.open(filePath);
+            if(fs.fail()){
+                throw(1);
+            }
+        } catch(int i) {            
+            cout << "you screwed that up didn't you, please try again";
+            return 0;
         }
     }
 
+    return 0;
 }
 
 int main()
@@ -111,7 +122,7 @@ int main()
     // prints the string enclosed in double quotes
     cout << "Welcome to BeamBend, enter and option below or type --help for help" << endl;
     cout << "" << endl;
-    cout < < < < "Your input: ";
+    cout << "Your input: ";
     cin >> userOption;
     cout << "You have selected option " << userOption << endl;
     return 0;
